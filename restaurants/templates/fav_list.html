@@ -26,35 +26,13 @@
           <div class="list-group-item text-center">
                 <a href="{% url 'restaurant-detail' restaurant.id %}" class="btn btn-outline-dark">View</a>
             
-              <button class="btn"  onclick="favorite_restaurant({{restaurant.id}})" ><i id="button-{{restaurant.id}}" class="fas fa-heart {%if restaurant.id in my_fav%}text-danger{%endif%}"></i></button>
+              
             
           </div>
         </div>
     </div>
     {% endfor %}
 </div>
-<script type="text/javascript">
-function favorite_restaurant(restaurant_id) {
-  let button_id = "#button-"+restaurant_id
-    $.ajax(
-        {
-            url:  "/restaurants/"+ restaurant_id+ "/favorite/",
-            type:"GET",
-            error: function(){
-                console.log('error');
-            },
-            success: function(data){ 
-              if(data.action==='like'){
-                $(button_id).addClass('text-danger')
-              }
-              else {
-                $(button_id).removeClass('text-danger')
 
-              }
-            },
-        }
-    );
-}
-</script>
 {% endblock content %}
 

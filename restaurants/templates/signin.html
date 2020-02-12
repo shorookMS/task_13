@@ -14,6 +14,7 @@
             {% csrf_token %}
             {{form|crispy}}
             <input type="submit" value="Signin" class="btn btn-outline-primary">
+            <a href="{% url 'slack_login'%}"><img src="https://api.slack.com/img/sign_in_with_slack.png" /></a>
         </form>
     </p>
   </div>

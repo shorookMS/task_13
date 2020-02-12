@@ -5,6 +5,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.db.models import Q
 from django.http import JsonResponse
 from django.contrib.auth.models import User
+import requests
 # This view will be used to favorite a restaurant
 def restaurant_favorite(request, restaurant_id):
     restaurant_obj= Restaurant.objects.get(id=restaurant_id)
@@ -173,3 +174,11 @@ def restaurant_delete(request, restaurant_id):
         return redirect('no-access')
     restaurant_obj.delete()
     return redirect('restaurant-list')
+    
+def test_api(request):
+    url = 'https://api.github.com/repos/joinCODED/task_13/events'
+    response = requests.get(url)
+    context = {
+        'response':response.json(),
+    }
+    return render(request,'testapi.html',context)
